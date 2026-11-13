@@ -7,7 +7,7 @@ NexMeet is a modern, fast, and fully open-source real-time video conferencing we
 🚀 **Try NexMeet Online**
 
 👉 🚀 **Try NexMeet Live:**  
-👉 Open NexMeet: https://my-meet-app-nu.vercel.app
+👉 (NexMeet Online):[https://my-meet-app-nu.vercel.app]
 
 Create a private room, share the invitation link, and start video conferencing instantly without any signup.
 
@@ -185,7 +185,7 @@ This project is production-ready for deployment on Vercel.
 
 ### Live Application
 
-👉 YOUR_LIVE_LINK
+👉 YOUR_LIVE_LINK : https://my-meet-app-nu.vercel.app
 
 ---
 
@@ -234,6 +234,9 @@ This project is open-source and available for educational and personal use.
 ---
 
 ## 👨‍💻 Author
+
+SHAWON GAZI\
+A CSE Student From Eastern University, Bangladesh
 
 Developed with ❤️ using Next.js, LiveKit, TypeScript, and Tailwind CSS.
 
