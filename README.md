@@ -1,71 +1,147 @@
 # 🎥 NexMeet — Open-Source Private Video Conferencing Platform
 
-**NexMeet** হলো একটি modern, fast এবং সম্পূর্ণ open-source real-time video conferencing web application। এটি **Next.js (App Router)**, **LiveKit SFU (WebRTC)** এবং **Tailwind CSS** দিয়ে তৈরি করা হয়েছে। কোনো প্রকার login বা account খোলা ছাড়াই যে কেউ এক ক্লিকে private meeting room create করতে এবং নিজের nickname দিয়ে সরাসরি join করতে পারবেন।
+NexMeet is a modern, fast, and fully open-source real-time video conferencing web application built with Next.js, LiveKit, and Tailwind CSS. Without requiring any account registration or login, users can instantly create a private meeting room and join using a custom nickname.
+
+## 🌐 Live Demo
+
+🚀 **Try NexMeet Online**
+
+👉 🚀 **Try NexMeet Live:**  
+👉 Open NexMeet: https://my-meet-app-nu.vercel.app
+
+Create a private room, share the invitation link, and start video conferencing instantly without any signup.
 
 ---
 
-## ✨ Key Features (প্রধান ফিচারসমূহ)
+## ✨ Key Features
 
-- **🔓 Zero-Auth Access (লগইন ছাড়াই জয়েন):** কোনো sign-up বা account ঝামেলা ছাড়াই সরাসরি browser থেকে meeting create এবং join করার সুবিধা।
-- **🔗 Dynamic Private Rooms:** প্রতিটি নতুন meeting-এর জন্য automatically একটি unique room code এবং shareable invite link তৈরি হয়।
-- **👤 Custom Nickname & Live Avatar:** Lobby-তে প্রবেশের সময় নিজের পছন্দমতো nickname সেট করা এবং নামের প্রথম অক্ষর দিয়ে dynamic avatar preview।
-- **🛡️ Advanced Host & Co-Host Controls:**
-  - যিনি meeting create করবেন তিনি automatically **Host** হিসেবে যুক্ত হবেন।
-  - **Mute Individual:** নির্দিষ্ট কোনো participant-এর microphone mute করার সুবিধা।
-  - **Mute All:** এক ক্লিকে meeting-এর সবাইকে (Host বাদে) একসাথে mute করা।
-  - **Make Co-Host:** meeting পরিচালনা করার জন্য অন্য কাউকে **Co-Host** role প্রদান করা।
-  - **Remove (Kick):** অপ্রয়োজনীয় বা অনাকাঙ্ক্ষিত কাউকে meeting থেকে বের করে দেওয়া।
-- **📹 Full Video Conferencing Experience:** HD video call, crystal-clear audio, screen sharing এবং real-time in-meeting chat।
-- **🎨 Modern Glassmorphism UI:** Tailwind CSS দিয়ে তৈরি dark-gradient এবং mobile-friendly responsive interface।
-- **👥 High Capacity (100+ Participants):** LiveKit-এর SFU architecture ব্যবহারের ফলে একটি meeting-এ অনায়াসেই ১০০+ মানুষ যুক্ত হতে পারে।
+### 🔓 Zero-Auth Access
+
+- No sign-up or account creation required.
+- Create and join meetings directly from the browser.
+
+### 🔗 Dynamic Private Rooms
+
+- Automatically generates unique room codes.
+- Shareable invite links for instant collaboration.
+
+### 👤 Custom Nickname & Live Avatar
+
+- Join meetings with a personalized nickname.
+- Dynamic avatar preview generated from user initials.
+
+### 🛡️ Advanced Host & Co-Host Controls
+
+- Meeting creator automatically becomes Host.
+- Mute specific participants.
+- Mute all participants except Host.
+- Promote participants to Co-Host.
+- Remove unwanted users from meetings.
+
+### 📹 Full Video Conferencing Experience
+
+- HD video conferencing.
+- Crystal-clear audio communication.
+- Screen sharing support.
+- Real-time chat messaging.
+
+### 🎨 Modern Glassmorphism UI
+
+- Beautiful dark-gradient design.
+- Fully responsive across desktop, tablet, and mobile devices.
+
+### 👥 High Capacity Meetings
+
+- Powered by LiveKit SFU architecture.
+- Supports 100+ participants efficiently.
 
 ---
 
-## 🛠️ Tech Stack (ব্যবহৃত প্রযুক্তিসমূহ)
+## 🔥 Why NexMeet?
 
-- **Frontend Framework:** [Next.js](https://nextjs.org) (React + TypeScript)
-- **Real-Time Media Engine:** [LiveKit](https://livekit.io) (WebRTC SFU)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com)
-- **Security:** JWT (JSON Web Token) ভিত্তিক secure room access
+- No registration required
+- Instant room creation
+- Secure JWT-based access
+- Host & Co-Host management
+- HD video & audio communication
+- Real-time chat support
+- Screen sharing functionality
+- Mobile-friendly responsive design
+- Open-source and customizable
+
+---
+
+## 📸 Screenshots
+
+### Landing Page
+
+> Add screenshot here
+
+### Meeting Room
+
+> Add screenshot here
+
+### Host Controls
+
+> Add screenshot here
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology           | Purpose                    |
+| -------------------- | -------------------------- |
+| Next.js (App Router) | Frontend Framework         |
+| React                | UI Library                 |
+| TypeScript           | Type Safety                |
+| LiveKit              | Real-Time Communication    |
+| WebRTC               | Audio & Video Streaming    |
+| Tailwind CSS         | Styling                    |
+| JWT                  | Secure Room Authentication |
+| Vercel               | Deployment                 |
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-my-meet-app/
+nexmeet/
 ├── src/
 │   ├── app/
 │   │   ├── api/
 │   │   │   ├── admin/
-│   │   │   │   └── route.ts       # Host controls API (Mute, Mute All, Kick, Co-Host)
+│   │   │   │   └── route.ts
 │   │   │   └── token/
-│   │   │       └── route.ts       # JWT Token generator & Role assignment
+│   │   │       └── route.ts
 │   │   ├── room/
 │   │   │   └── [roomName]/
-│   │   │       └── page.tsx       # Dynamic Lobby, Video Room & Host Control UI
-│   │   ├── icon.png               # Custom Favicon / App Logo
-│   │   ├── layout.tsx             # Root Layout & Metadata
-│   │   └── page.tsx               # Landing Page & Private Room Generator
-├── .env.local                     # Environment Variables (API Keys)
-└── package.json
+│   │   │       └── page.tsx
+│   │   ├── icon.png
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│
+├── .env.local
+├── package.json
+└── README.md
 ```
 
 ---
 
-## 🚀 Getting Started (লোকাল কম্পিউটারে রান করার নিয়ম)
+## 🚀 Getting Started
 
-### ১. Repository ক্লোন ও Package ইনস্টল করুন
+### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com
+git clone https://github.com/YOUR_USERNAME/nexmeet.git
+
 cd nexmeet
+
 npm install
 ```
 
-### ২. Environment Variables সেট করুন
+### 2️⃣ Configure Environment Variables
 
-Project-এর root folder-এ `.env.local` নামে একটি ফাইল তৈরি করুন এবং আপনার LiveKit server-এর তথ্য বসান:
+Create a `.env.local` file in the root directory and add:
 
 ```env
 NEXT_PUBLIC_LIVEKIT_URL=wss://your-project.livekit.cloud
@@ -73,26 +149,92 @@ LIVEKIT_API_KEY=your_api_key
 LIVEKIT_API_SECRET=your_api_secret
 ```
 
-### ৩. Development Server চালু করুন
+### 3️⃣ Start Development Server
 
 ```bash
 npm run dev
 ```
 
-এবার browser-এ গিয়ে `http://localhost:3000` ওপেন করুন।
+Open:
+
+```text
+http://localhost:3000
+```
+
+in your browser.
 
 ---
 
-## 🌐 Deployment (Vercel-এ লাইভ করার নিয়ম)
+## 🌐 Deployment
 
-এই project-টি **Vercel**-এ সম্পূর্ণ ফ্রি-তে deploy করার জন্য প্রস্তুত:
+This project is production-ready for deployment on Vercel.
 
-1. কোডটি **GitHub**-এ push করুন।
-2. [Vercel](https://vercel.com)-এ গিয়ে repository-টি import করুন।
-3. **Environment Variables** সেকশনে `.env.local`-এর তিনটি variable যোগ করুন এবং **Deploy** বাটনে ক্লিক করুন।
+### Deploy Steps
+
+1. Push your project to GitHub.
+2. Import the repository into Vercel.
+3. Add all environment variables.
+4. Click Deploy.
+
+### Production Stack
+
+- Frontend: Vercel
+- Media Server: LiveKit Cloud
+- Authentication: JWT
+- Framework: Next.js
+
+### Live Application
+
+👉 YOUR_LIVE_LINK
+
+---
+
+## 🔒 Security
+
+- JWT-based token generation
+- Secure LiveKit room access
+- Role-based host permissions
+- Server-side token validation
+- Protected moderation APIs
+
+---
+
+## 🚀 Future Improvements
+
+- Waiting Room System
+- Meeting Password Protection
+- Meeting Recording
+- Virtual Backgrounds
+- Participant Reactions
+- Meeting Scheduling
+- Chat File Sharing
+- AI Meeting Assistant
+- Meeting History
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+Feel free to fork the repository and submit a pull request.
+
+---
+
+## ⭐ Support
+
+If you like this project, consider giving it a star on GitHub.
 
 ---
 
 ## 📄 License
 
-এই project-টি open-source এবং educational ও personal ব্যবহারের জন্য উন্মুক্ত।
+This project is open-source and available for educational and personal use.
+
+---
+
+## 👨‍💻 Author
+
+Developed with ❤️ using Next.js, LiveKit, TypeScript, and Tailwind CSS.
+
+**NexMeet — Fast, Secure & Open-Source Video Conferencing Platform**
