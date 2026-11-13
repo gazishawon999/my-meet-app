@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎥 NexMeet — Open-Source Private Video Conferencing Platform
 
-## Getting Started
+**NexMeet** হলো একটি modern, fast এবং সম্পূর্ণ open-source real-time video conferencing web application। এটি **Next.js (App Router)**, **LiveKit SFU (WebRTC)** এবং **Tailwind CSS** দিয়ে তৈরি করা হয়েছে। কোনো প্রকার login বা account খোলা ছাড়াই যে কেউ এক ক্লিকে private meeting room create করতে এবং নিজের nickname দিয়ে সরাসরি join করতে পারবেন।
 
-First, run the development server:
+---
+
+## ✨ Key Features (প্রধান ফিচারসমূহ)
+
+- **🔓 Zero-Auth Access (লগইন ছাড়াই জয়েন):** কোনো sign-up বা account ঝামেলা ছাড়াই সরাসরি browser থেকে meeting create এবং join করার সুবিধা।
+- **🔗 Dynamic Private Rooms:** প্রতিটি নতুন meeting-এর জন্য automatically একটি unique room code এবং shareable invite link তৈরি হয়।
+- **👤 Custom Nickname & Live Avatar:** Lobby-তে প্রবেশের সময় নিজের পছন্দমতো nickname সেট করা এবং নামের প্রথম অক্ষর দিয়ে dynamic avatar preview।
+- **🛡️ Advanced Host & Co-Host Controls:**
+  - যিনি meeting create করবেন তিনি automatically **Host** হিসেবে যুক্ত হবেন।
+  - **Mute Individual:** নির্দিষ্ট কোনো participant-এর microphone mute করার সুবিধা।
+  - **Mute All:** এক ক্লিকে meeting-এর সবাইকে (Host বাদে) একসাথে mute করা।
+  - **Make Co-Host:** meeting পরিচালনা করার জন্য অন্য কাউকে **Co-Host** role প্রদান করা।
+  - **Remove (Kick):** অপ্রয়োজনীয় বা অনাকাঙ্ক্ষিত কাউকে meeting থেকে বের করে দেওয়া।
+- **📹 Full Video Conferencing Experience:** HD video call, crystal-clear audio, screen sharing এবং real-time in-meeting chat।
+- **🎨 Modern Glassmorphism UI:** Tailwind CSS দিয়ে তৈরি dark-gradient এবং mobile-friendly responsive interface।
+- **👥 High Capacity (100+ Participants):** LiveKit-এর SFU architecture ব্যবহারের ফলে একটি meeting-এ অনায়াসেই ১০০+ মানুষ যুক্ত হতে পারে।
+
+---
+
+## 🛠️ Tech Stack (ব্যবহৃত প্রযুক্তিসমূহ)
+
+- **Frontend Framework:** [Next.js](https://nextjs.org) (React + TypeScript)
+- **Real-Time Media Engine:** [LiveKit](https://livekit.io) (WebRTC SFU)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **Security:** JWT (JSON Web Token) ভিত্তিক secure room access
+
+---
+
+## 📂 Project Structure
+
+```text
+my-meet-app/
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── admin/
+│   │   │   │   └── route.ts       # Host controls API (Mute, Mute All, Kick, Co-Host)
+│   │   │   └── token/
+│   │   │       └── route.ts       # JWT Token generator & Role assignment
+│   │   ├── room/
+│   │   │   └── [roomName]/
+│   │   │       └── page.tsx       # Dynamic Lobby, Video Room & Host Control UI
+│   │   ├── icon.png               # Custom Favicon / App Logo
+│   │   ├── layout.tsx             # Root Layout & Metadata
+│   │   └── page.tsx               # Landing Page & Private Room Generator
+├── .env.local                     # Environment Variables (API Keys)
+└── package.json
+```
+
+---
+
+## 🚀 Getting Started (লোকাল কম্পিউটারে রান করার নিয়ম)
+
+### ১. Repository ক্লোন ও Package ইনস্টল করুন
+
+```bash
+git clone https://github.com
+cd nexmeet
+npm install
+```
+
+### ২. Environment Variables সেট করুন
+
+Project-এর root folder-এ `.env.local` নামে একটি ফাইল তৈরি করুন এবং আপনার LiveKit server-এর তথ্য বসান:
+
+```env
+NEXT_PUBLIC_LIVEKIT_URL=wss://your-project.livekit.cloud
+LIVEKIT_API_KEY=your_api_key
+LIVEKIT_API_SECRET=your_api_secret
+```
+
+### ৩. Development Server চালু করুন
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+এবার browser-এ গিয়ে `http://localhost:3000` ওপেন করুন।
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Deployment (Vercel-এ লাইভ করার নিয়ম)
 
-## Learn More
+এই project-টি **Vercel**-এ সম্পূর্ণ ফ্রি-তে deploy করার জন্য প্রস্তুত:
 
-To learn more about Next.js, take a look at the following resources:
+1. কোডটি **GitHub**-এ push করুন।
+2. [Vercel](https://vercel.com)-এ গিয়ে repository-টি import করুন।
+3. **Environment Variables** সেকশনে `.env.local`-এর তিনটি variable যোগ করুন এবং **Deploy** বাটনে ক্লিক করুন।
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+এই project-টি open-source এবং educational ও personal ব্যবহারের জন্য উন্মুক্ত।
