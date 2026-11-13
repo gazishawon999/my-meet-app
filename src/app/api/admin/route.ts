@@ -41,25 +41,20 @@ export async function POST(req: NextRequest) {
         {
           canPublish: true,
           canSubscribe: true,
-          roomAdmin: true,
         },
       );
     } else if (action === "mute-all") {
-      // রুমের সব অংশগ্রহণকারীর তালিকা আনা হচ্ছে
       const participants = await roomService.listParticipants(room);
 
       for (const p of participants) {
-        // যিনি Mute All চাপছেন তাকে মিউট করা হবে না
         if (p.identity === requesterIdentity) continue;
 
-        // মূল Host-কেও মিউট করা হবে না
         let pRole = "participant";
         try {
           if (p.metadata) pRole = JSON.parse(p.metadata).role || "participant";
         } catch {}
         if (pRole === "host") continue;
 
-        // বাকি সবার অডিও ট্র্যাক মিউট করা হচ্ছে
         const audioTrack = p.tracks.find((t) => t.type === 0);
         if (audioTrack && !audioTrack.muted) {
           await roomService.mutePublishedTrack(
@@ -73,11 +68,10 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error("Admin action error:", error);
-    return NextResponse.json(
-      { error: error.message || "Action failed" },
-      { status: 500 },
-    );
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Action failed";
+    console.error("Admin action error:", errorMessage);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
